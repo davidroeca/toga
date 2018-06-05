@@ -1,6 +1,8 @@
 from gi.repository import Gtk
 from travertino.size import at_least
 
+from toga_gtk.libs import gtk_alignment
+
 from .base import Widget
 
 
@@ -11,6 +13,8 @@ class Button(Widget):
 
         self.native.connect('show', lambda event: self.rehint())
         self.native.connect('clicked', self.on_press)
+        self.rehint()
+
 
     def set_label(self, label):
         self.native.set_label(self.interface.label)
@@ -26,6 +30,14 @@ class Button(Widget):
     def set_on_press(self, handler):
         # No special handling required
         pass
+
+    def set_alignment(self, value):
+        halign, valign = gtk_alignment(value)
+        self.native.set_valign(valign)
+        self.native.set_halign(halign)
+
+    def set_font(self, value):
+        self.native.modify_font(value._impl.native)
 
     def rehint(self):
         # print("REHINT", self, self.native.get_preferred_width(), self.native.get_preferred_height())
