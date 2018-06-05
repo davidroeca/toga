@@ -18,7 +18,7 @@ class Label(Widget):
         self.native.connect('show', lambda event: self.rehint())
 
     def set_alignment(self, value):
-        self.native.set_alignment(*gtk_alignment(value))
+        self.native.set_halign(gtk_alignment(value))
 
     def set_color(self, value):
         if value:

@@ -1,5 +1,6 @@
 import toga
 from toga.style import Pack
+from toga.style.pack import *
 from toga.color import RED, BLUE
 from toga.constants import COLUMN, ROW
 
@@ -8,7 +9,7 @@ class ExampleButtonApp(toga.App):
     def startup(self):
         # Window class
         #   Main window of the application with title and size
-        self.main_window = toga.MainWindow(title=self.name, size=(500, 200))
+        self.main_window = toga.MainWindow(title=self.name, size=(200, 200))
 
         # Common style of the inner boxes
         style_inner_box = Pack(direction=ROW)
@@ -22,7 +23,13 @@ class ExampleButtonApp(toga.App):
         button2 = toga.Button('Disabled', enabled=False)
 
         # Button with label and style option
-        button3 = toga.Button('Bigger', style=Pack(width=200))
+        button3 = toga.Button(
+            'Bigger',
+            style=Pack(
+                width=200,
+                text_align=CENTER,
+            )
+        )
 
         # Button with label and callback function called when
         #   hit the button
@@ -63,12 +70,20 @@ class ExampleButtonApp(toga.App):
         # Button with serif font
         button8 = toga.Button(
             'Serif Font',
-            style=Pack(font_family='serif', font_size=12.0)
+            style=Pack(
+                text_align=RIGHT,
+                font_family='serif',
+                font_size=12.0,
+            )
         )
 
         button9 = toga.Button(
             'Sans Serif Font',
-            style=Pack(font_family='sans-serif', font_size=15.0)
+            style=Pack(
+                text_align=RIGHT,
+                font_family='sans-serif',
+                font_size=15.0
+            )
         )
 
         inner_box3 = toga.Box(
@@ -82,7 +97,11 @@ class ExampleButtonApp(toga.App):
         #  Create the outer box with 2 rows
         outer_box = toga.Box(
             style=Pack(direction=COLUMN, height=10),
-            children=[inner_box1, inner_box2, inner_box3]
+            children=[
+                inner_box1,
+                inner_box2,
+                inner_box3,
+            ]
         )
 
         # Add the content on the main window

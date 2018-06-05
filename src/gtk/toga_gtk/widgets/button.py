@@ -32,9 +32,7 @@ class Button(Widget):
         pass
 
     def set_alignment(self, value):
-        halign, valign = gtk_alignment(value)
-        self.native.set_valign(valign)
-        self.native.set_halign(halign)
+        self.native.set_halign(gtk_alignment(value))
 
     def set_font(self, value):
         self.native.modify_font(value._impl.native)
